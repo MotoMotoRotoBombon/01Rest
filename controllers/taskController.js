@@ -6,7 +6,7 @@ let tasks = [
         startDate: '20-09-24',
         endDate: '20-09-24',
         status: 'pendiente',
-        teamMembers: ['Jaacasc,acasca,ascascas,ascasca'],
+        teamMembers : ["Reymundo Sahagún","Rodolfo Frias","Jorge Gonzalez","Cesar Uriel"],
     },
 ];
 
