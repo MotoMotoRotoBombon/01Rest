@@ -15,7 +15,15 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { title, description, startDate, endDate, status, teamMembers } = req.body;
+    const { title, description, startDate, endDate, status, teamMembers, budget } = req.body;
+
+    // Validar que el budget sea un número positivo
+    if (typeof budget !== 'number' || budget <= 0) {
+        return res.status(400).json({
+            code: 400,
+            message: 'El campo "budget" debe ser un número positivo.'
+        });
+    }
 
     // Expresión regular para validar el formato YYYY-MM-DD
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
@@ -57,9 +65,10 @@ router.post('/', (req, res) => {
         });
     }
 
-    const newTask = taskController.createTask(title, description, startDate, endDate, status, teamMembers);
+    const newTask = taskController.createTask(title, description, startDate, endDate, status, teamMembers, budget);
     res.status(201).json(newTask);
 });
+
 
  
 router.delete('/:id', (req, res) => {

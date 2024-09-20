@@ -7,6 +7,7 @@ let tasks = [
         endDate: '2024-11-28',
         status: 'completado',
         teamMembers : ["Reymundo Sahagún","Rodolfo Frias","Jorge Gonzalez","Cesar Uriel"],
+        budget: 5000,
     },
 ];
 
@@ -25,7 +26,7 @@ function getNextId() {
     return id;
 }
 
-function createTask(title, description,startDate,endDate,status,teamMembers) {
+function createTask(title, description,startDate,endDate,status,teamMembers,budget) {
     const newId = getNextId();
     const newTask = {
         id: newId,
@@ -34,7 +35,8 @@ function createTask(title, description,startDate,endDate,status,teamMembers) {
         startDate,
         endDate,
         status,
-        teamMembers
+        teamMembers,
+        budget
     };
 
     tasks.push(newTask);
