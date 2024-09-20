@@ -3,9 +3,9 @@ let tasks = [
         id: 1,
         title: "Tarea1",
         description: "Descripción de la tarea 1",
-        startDate: '20-09-24',
-        endDate: '20-09-24',
-        status: 'pendiente',
+        startDate: '2024-09-20',
+        endDate: '2024-11-28',
+        status: 'completado',
         teamMembers : ["Reymundo Sahagún","Rodolfo Frias","Jorge Gonzalez","Cesar Uriel"],
     },
 ];

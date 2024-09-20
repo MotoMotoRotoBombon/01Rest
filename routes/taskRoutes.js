@@ -14,12 +14,54 @@ router.get('/', (req, res) => {
     }
 });
 
-router.post('/', (req, res ) => {
-    const {title, description , startDate, endDate, status, teamMembers} = req.body;
+router.post('/', (req, res) => {
+    const { title, description, startDate, endDate, status, teamMembers } = req.body;
+
+    // Expresión regular para validar el formato YYYY-MM-DD
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
+    // Validar que las fechas sigan el formato correcto
+    if (!dateRegex.test(startDate) || !dateRegex.test(endDate)) {
+        return res.status(400).json({
+            code: 400,
+            message: 'Formato de fecha no válido. Use el formato YYYY-MM-DD.'
+        });
+    }
+
+    // Convertir fechas a objetos Date
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    // Verificar que las fechas sean válidas
+    if (isNaN(start.getTime()) || isNaN(end.getTime())) {
+        return res.status(400).json({
+            code: 400,
+            message: 'Las fechas proporcionadas no son válidas.'
+        });
+    }
+
+    // Verificar que la fecha de finalización no sea menor que la de inicio
+    if (end < start) {
+        return res.status(400).json({
+            code: 400,
+            message: 'La fecha de finalización no puede ser menor que la fecha de inicio.'
+        });
+    }
+
+    // Validar que el status sea uno de los permitidos
+    const validStatuses = ['pendiente', 'completado', 'en progreso'];
+    if (!validStatuses.includes(status)) {
+        return res.status(400).json({
+            code: 400,
+            message: `El estado '${status}' no es válido. Los estados permitidos son: ${validStatuses.join(', ')}.`
+        });
+    }
+
     const newTask = taskController.createTask(title, description, startDate, endDate, status, teamMembers);
     res.status(201).json(newTask);
-})
+});
 
+ 
 router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id); // Convertimos id a número
     const deletedTask = taskController.deleteTask(id);
