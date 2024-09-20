@@ -2,23 +2,17 @@ let tasks = [
     {
         id: 1,
         title: "Tarea1",
-        description: "Descripción de la tarea 1"
+        description: "Descripción de la tarea 1",
+        startDate: '20-09-24',
+        endDate: '20-09-24',
+        status: 'pendiente',
+        teamMembers: ['Jaacasc,acasca,ascascas,ascasca'],
     },
-    {
-        id: 2,
-        title: "Tarea2",
-        description: "Descripción de la tarea 2"
-    },
-    {
-        id: 3,
-        title: "Tarea3",
-        description: "Descripción de la tarea 3"
-    }
 ];
 
 let availableIds = new Set(tasks.map(task => task.id));  // IDs disponibles
 
-function getTasks() {
+function  getTasks() {
     // Ordenar las tareas por ID antes de devolverlas
     return tasks.slice().sort((a, b) => a.id - b.id);
 }
@@ -31,12 +25,16 @@ function getNextId() {
     return id;
 }
 
-function createTask(title, description) {
+function createTask(title, description,startDate,endDate,status,teamMembers) {
     const newId = getNextId();
     const newTask = {
         id: newId,
         title,
-        description
+        description,
+        startDate,
+        endDate,
+        status,
+        teamMembers
     };
 
     tasks.push(newTask);

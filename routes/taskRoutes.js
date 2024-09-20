@@ -4,16 +4,17 @@ const router = express.Router();
 const taskController = require('../controllers/taskController');
 
 // Rutas CRUD
-router.get('/', (req, res)=> {
-    const tasks = taskController.getAllTasks();
+router.get('/', (req, res) => {
+    const tasks = taskController.getTasks();  // Ejecutar la función con paréntesis
     
-    if(tasks.length > 0) {
-     res.status(200).json(tasks);
-     } else {
-         res.status(404).json({code: 404, message: 'Task not found'});
-     }
- 
- });
+    if (tasks.length > 0) {
+        res.status(200).json(tasks);
+    } else {
+        res.status(404).json({ code: 404, message: 'Task not found' });
+    }
+});
+
+
 
 router.post('/', (req, res) => {
     const { title, description } = req.body;
