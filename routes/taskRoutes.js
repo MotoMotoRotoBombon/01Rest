@@ -14,13 +14,11 @@ router.get('/', (req, res) => {
     }
 });
 
-
-
-router.post('/', (req, res) => {
-    const { title, description } = req.body;
-    const newTask = taskController.createTask(title, description);
-    res.status(201).json(newTask);  
-});
+router.post('/', (req, res ) => {
+    const {title, description , startDate, endDate, status, teamMembers} = req.body;
+    const newTask = taskController.createTask(title, description, startDate, endDate, status, teamMembers);
+    res.status(201).json(newTask);
+})
 
 router.delete('/:id', (req, res) => {
     const id = parseInt(req.params.id); // Convertimos id a número
