@@ -9,6 +9,16 @@ let tasks = [
         teamMembers : ["Reymundo Sahagún","Rodolfo Frias","Jorge Gonzalez","Cesar Uriel"],
         budget: 5000,
     },
+    {
+        id: 2,
+        title: "Tarea2",
+        description: "Descripción de la tarea 2",
+        startDate: '2024-09-20',
+        endDate: '2024-11-28',
+        status: 'completado',
+        teamMembers : ["Ana","Felipe","Karla","Lino"],
+        budget: 5000,
+    }
 ];
 
 let availableIds = new Set(tasks.map(task => task.id));  // IDs disponibles
